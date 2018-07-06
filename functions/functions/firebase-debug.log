@@ -1,0 +1,70 @@
+[debug] [2018-07-06T06:51:39.685Z] ----------------------------------------------------------------------
+[debug] [2018-07-06T06:51:39.689Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2018-07-06T06:51:39.690Z] CLI Version:   3.19.3
+[debug] [2018-07-06T06:51:39.690Z] Platform:      win32
+[debug] [2018-07-06T06:51:39.690Z] Node Version:  v9.8.0
+[debug] [2018-07-06T06:51:39.691Z] Time:          Fri Jul 06 2018 13:51:39 GMT+0700 (SE Asia Standard Time)
+[debug] [2018-07-06T06:51:39.691Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-07-06T06:51:39.709Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-06T06:51:39.710Z] > authorizing via signed-in user
+[debug] [2018-07-06T06:51:39.714Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/on-thi-giay-phep-lai-xe  
+  
+ Fri Jul 06 2018 13:51:39 GMT+0700 (SE Asia Standard Time)
+[debug] [2018-07-06T06:51:40.877Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-06T06:51:40.878Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/on-thi-giay-phep-lai-xe/tokens  
+  
+ Fri Jul 06 2018 13:51:40 GMT+0700 (SE Asia Standard Time)
+[debug] [2018-07-06T06:51:41.736Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'on-thi-giay-phep-lai-xe'...
+[info] 
+[info] i  deploying functions
+[debug] [2018-07-06T06:51:43.281Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string
+    at assertPath (path.js:39:11)
+    at Object.join (path.js:495:7)
+    at Config.path (C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:166:37)
+    at C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\lifecycleHooks.js:68:38
+    at _chain (C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:26:38)
+    at deploy (C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:81:10)
+    at Command._action (C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\commands\deploy.js:53:12)
+    at C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:200:29
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:118:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2018-07-06T06:51:56.239Z] ----------------------------------------------------------------------
+[debug] [2018-07-06T06:51:56.242Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --only functions
+[debug] [2018-07-06T06:51:56.242Z] CLI Version:   3.19.3
+[debug] [2018-07-06T06:51:56.242Z] Platform:      win32
+[debug] [2018-07-06T06:51:56.242Z] Node Version:  v9.8.0
+[debug] [2018-07-06T06:51:56.243Z] Time:          Fri Jul 06 2018 13:51:56 GMT+0700 (SE Asia Standard Time)
+[debug] [2018-07-06T06:51:56.243Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-07-06T06:51:56.255Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-06T06:51:56.256Z] > authorizing via signed-in user
+[debug] [2018-07-06T06:51:56.259Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/on-thi-giay-phep-lai-xe  
+  
+ Fri Jul 06 2018 13:51:56 GMT+0700 (SE Asia Standard Time)
+[debug] [2018-07-06T06:51:57.242Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-06T06:51:57.243Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/on-thi-giay-phep-lai-xe/tokens  
+  
+ Fri Jul 06 2018 13:51:57 GMT+0700 (SE Asia Standard Time)
+[debug] [2018-07-06T06:51:58.055Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'on-thi-giay-phep-lai-xe'...
+[info] 
+[info] i  deploying functions
+[debug] [2018-07-06T06:51:59.506Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string
+    at assertPath (path.js:39:11)
+    at Object.join (path.js:495:7)
+    at Config.path (C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:166:37)
+    at C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\lifecycleHooks.js:68:38
+    at _chain (C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:26:38)
+    at deploy (C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:81:10)
+    at Command._action (C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\commands\deploy.js:53:12)
+    at C:\Users\No Name\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:200:29
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:118:7)
+[error] 
+[error] Error: An unexpected error has occurred.

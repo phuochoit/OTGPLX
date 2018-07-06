@@ -98,7 +98,7 @@ android {
         javaMaxHeapSize "4g"
     }
     compileSdkVersion 27
-
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.phuochoit.onthigiaypheplaixe"
         minSdkVersion 16
@@ -109,6 +109,14 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
         multiDexEnabled true
+    }
+    signingConfigs {
+        debug {
+            storeFile file('../keystores/debug.keystore')
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+        }
     }
     splits {
         abi {
@@ -143,13 +151,15 @@ dependencies {
     compile(project(':react-native-firebase')) {
         transitive = false
     }
-
+    compile(project(":react-native-google-signin")){
+        exclude group: "com.google.android.gms" // very important
+    }
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
     // RNFirebase optional dependencies
     implementation "com.google.firebase:firebase-ads:15.0.0"
     implementation "com.google.firebase:firebase-auth:15.1.0"
     implementation "com.google.firebase:firebase-database:15.0.0"
     
-    compile project(':react-native-google-signin')
     compile project(':react-native-fbsdk')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
