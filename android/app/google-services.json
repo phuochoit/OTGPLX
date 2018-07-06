@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "500244037956",
+    "firebase_url": "https://on-thi-giay-phep-lai-xe.firebaseio.com",
+    "project_id": "on-thi-giay-phep-lai-xe",
+    "storage_bucket": "on-thi-giay-phep-lai-xe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500244037956:android:a2bf3bce8a87b370",
+        "android_client_info": {
+          "package_name": "com.phuochoit.onthigiaypheplaixe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500244037956-61inn5btci4926db3m0spgmb4g2kff44.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFYBRyriWpx_PnZrwwYBmIgZU9z3PvMt8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
