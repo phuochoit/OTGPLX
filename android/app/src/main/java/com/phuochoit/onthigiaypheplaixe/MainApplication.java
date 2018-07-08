@@ -14,6 +14,7 @@ import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.admob.RNFirebaseAdMobPackage; //Firebase AdMob
 import io.invertase.firebase.auth.RNFirebaseAuthPackage; // Firebase Auth
 import io.invertase.firebase.database.RNFirebaseDatabasePackage; // Firebase Realtime Database
+import io.invertase.firebase.storage.RNFirebaseStoragePackage; // Firebase storage
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -40,8 +41,7 @@ public class MainApplication extends Application implements ReactApplication {
         @Override
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFirebasePackage(),
-                    new RNFirebaseAdMobPackage(), new RNFirebaseAuthPackage(), new RNFirebaseDatabasePackage(),
-                    new RNGoogleSigninPackage(), new FBSDKPackage(mCallbackManager));
+                    new RNFirebaseAdMobPackage(), new RNFirebaseAuthPackage(), new RNFirebaseDatabasePackage(),new RNFirebaseStoragePackage(), new RNGoogleSigninPackage(), new FBSDKPackage(mCallbackManager));
         }
 
         @Override

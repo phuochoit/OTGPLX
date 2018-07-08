@@ -23,7 +23,7 @@ export default class SideBar extends React.Component {
         const { user } = this.props.user;
         const heightTop = deviceHeight * 0.25;
         const heightcenter = deviceHeight * 0.1;
-        const heightFooter = deviceHeight * 0.05;
+        const heightFooter = deviceHeight * 0.1;
         const heightBottom = deviceHeight - heightTop - heightcenter - heightFooter;
 
         if (user != null) {

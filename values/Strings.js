@@ -6,7 +6,7 @@ const DARWERMENU = [{
     icon: 'book',
     iconType: 'FontAwesome'
 }, {
-    name: 'BIENBAO',
+    name: 'NOTICEBOARD',
     title: 'Biển Báo',
     icon: 'warning',
     iconType: 'Entypo'
