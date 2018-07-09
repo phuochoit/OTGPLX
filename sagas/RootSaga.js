@@ -5,10 +5,10 @@ import { watchFetchSigninSaga, watchFetchLogoutSaga } from "./SigninSaga";
 import { watchFetchMoreNoticeBoardSaga, watchFetchNoticeBoardSaga } from "./NoticeBoardSaga";
 
 export default function* RootSaga() {
-    yield [
+    yield all([
         fork(watchFetchSigninSaga),
         fork(watchFetchLogoutSaga),
         fork(watchFetchNoticeBoardSaga),
         fork(watchFetchMoreNoticeBoardSaga),
-    ];
+    ]);
 }

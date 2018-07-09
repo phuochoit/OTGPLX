@@ -10,22 +10,13 @@ class NoticeBoardComponent extends Component {
         this.state = {};
     }
 
-    componentWillMount = () => {
-    
-        params = {
-            page: 1,
-            type:  "1"
-        }
-        this.props.fetchNoticeBoardContainer(params);
-    };
-    
     render() {
         return (
             <Container>
                 <HeaderComponent navigation={this.props.navigation} title="Biển Báo" />
                 <Tabs renderTabBar={() => <ScrollableTab />}>
                     <Tab heading="Biển Cấm">
-                        <NoticeBoardTabComponent keys="1" navigation={this.props.navigation} />
+                        <NoticeBoardTabComponent keys="1" navigation={this.props.navigation} fetchNoticeBoardContainer={this.props.fetchNoticeBoardContainer} noticeBoard={this.props.noticeBoard} />
                     </Tab>
                     <Tab heading="Biển Nguy Hiểm">
                         <NoticeBoardTabComponent keys="2" navigation={this.props.navigation}/>

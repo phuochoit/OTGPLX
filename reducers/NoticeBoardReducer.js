@@ -10,30 +10,34 @@ const initialState = {
         phu: null,
         vach: null,
     },
-    currentloading: true,
-    type: 'none'
+    currentlySending: false,
+    type: "NONE"
 }
 
 const NoticeBoardReducer = (state = initialState, action) => {
 
-    console.log('action', action.type);
     switch (action.type) {
+        case FETCH_NOTICEBOARD:
+            return { ...state, currentlySending: true, type: "FETCH_NOTICEBOARD"}
+
         case FETCH_NOTICEBOARD_SUCCEEDED:
             switch (action.result.type) {
                 case "1":
-                    return { ...state, currentlySending: false , items:{
-                        ...state.items,
-                        cam: action.result.playload
-                    }, type: 'FETCH_NOTICEBOARD_SUCCEEDED'}
+                    return {
+                        ...state, items: {
+                            ...state.items,
+                            cam: action.result.playload
+                        }, currentlySending: false, type: "FETCH_NOTICEBOARD_SUCCEEDED"
+                    }
             }
-           
+
         case FETCH_NOTICEBOARD_FAILED:
             return { ...state, error: action.error }
         default:
             return state;
     }
 
-    
+
 }
 
 export default NoticeBoardReducer;

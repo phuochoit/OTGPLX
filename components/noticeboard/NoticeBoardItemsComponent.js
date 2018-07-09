@@ -5,7 +5,7 @@ import firebase from "react-native-firebase";
 
 import LoadingComponent from "../config/LoadingComponent";
 import { styles, thumbnail_xp  } from "../../assets/styles/styles";
-// const rootRef = firebase.storage().ref('images/NoticeBoard');
+const rootRef = firebase.storage().ref('images/NoticeBoard');
 class NoticeBoardItemsComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -17,10 +17,10 @@ class NoticeBoardItemsComponent extends React.Component {
 
     render() {
         const { item, index } = this.props;
-        // const imagesRef = rootRef.child(item.anh + '.jpg')
-        // imagesRef.getDownloadURL().then((result) =>{
-        //     this.setState({ url: result, loading: false});
-        // } );
+        const imagesRef = rootRef.child(item.anh + '.jpg')
+        imagesRef.getDownloadURL().then((result) =>{
+            this.setState({ url: result, loading: false});
+        } );
         return (
             <View style={[styles.item_xp_wraper, styles.item_xp_wraper_boxshadow, styles.marginHorizontal]} key={index}>
                 <View style={[styles.item_xp_left, styles.item_bb_left]}>

@@ -24,16 +24,19 @@ class NoticeBoardTabComponent extends Component {
         // this._getMore = this._getMore.bind(this);
     }
     componentWillMount = async () => {
-        // const noticeboards = [];
-        // rootRef.orderByChild("loai_bien").equalTo(this.props.keys).limitToFirst(this.state.limit).on('child_added', (childSnapshot) => {
-        //     noticeboards.push(childSnapshot.val());
-        // });
 
-        // this.setState({
-        //     items: noticeboards
-        // });
+        params = {
+            page: 1,
+            type: this.props.keys
+        }
+        this.props.fetchNoticeBoardContainer(params);
     };
     componentDidMount = () => {
+        // rootRef.orderByChild("loai_bien").equalTo(this.props.keys).limitToFirst(10).on('value', (childSnapshot) => {
+        //     console.log('childSnapshot', childSnapshot);
+        // });
+
+
         // setTimeout(() => {
         //     this.setState({ loadding: false })
         // }, 3000);
@@ -64,9 +67,16 @@ class NoticeBoardTabComponent extends Component {
     }
 
     render() {
-        const { refreshing, items, loadding } = this.state;
-
-        if (loadding) {
+        console.log(this.props.noticeBoard);
+        const { refreshing } = this.state;
+        let items = null;
+        switch (this.props.keys) {
+            case "1":
+                items = this.props.noticeBoard.items.cam
+                break;
+        
+        }
+        if (this.props.noticeBoard.currentlySending) {
             return (
                 <View style={[styles.fx1, styles.jcac]}>
                     <LoadingComponent />
