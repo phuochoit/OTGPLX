@@ -1,28 +1,30 @@
-import { put, takeLatest, call, console } from "redux-saga/effects";
+import { put, takeLatest, call } from "redux-saga/effects";
 import firebase from "react-native-firebase";
+import { slice } from "lodash"
 
 import { FETCH_NOTICEBOARD, FETCH_NOTICEBOARD_SUCCEEDED, FETCH_NOTICEBOARD_FAILED, FETCH_MORE_NOTICEBOARD, FETCH_MORE_NOTICEBOARD_SUCCEEDED } from "../actions/ActionTypes";
+import { getImages } from "./ComomSaga";
 
 const rootRef = firebase.database().ref('NoticeBoard');
-const rootStorageRef = firebase.storage().ref('images/NoticeBoard');
 
 function* fetchNoticeBoardSaga(params) {
     try {
-        const { page, type } = params.params;
+        let data = [];
+        const type = params.params;
+        const ref = rootRef.orderByChild("loai_bien").equalTo(type).limitToFirst(10);
+        const refdata = yield call([ref, ref.once], 'value');
         
-        // const posts = yield call(getAll, 'NoticeBoard');
-
-        const ref = rootRef.orderByChild("loai_bien").equalTo("1").limitToFirst(10);
-
-        const data = yield call([ref, ref.once], 'value');
-
-        // console.log(posts);
-        // let noticeboards = yield call(_getNoticeBoardsItems, page, type);
+        for (let index = 0; index < refdata.val().length; index++) {
+            const element = refdata.val()[index];
+            url = yield call(getImages, 'NoticeBoard', element.anh + '.jpg');
+            console.log('url', url);
+            data[index] = { ...refdata.val()[index], anh: url }
+        }
         yield put({
             type: FETCH_NOTICEBOARD_SUCCEEDED,
             result: {
                 type,
-                playload: data.val()
+                playload: data
             }
         });
     } catch (error) {
@@ -30,46 +32,30 @@ function* fetchNoticeBoardSaga(params) {
     }
 }
 
-export function* get(path, key) {
-    const ref = firebase.database().ref(`${path}/${key}`);
-    const data = yield call([ref, ref.once], 'value');
-    return data.val();
-}
-
-export function* getAll(path) {
-    const ref = firebase.database().ref(path).orderByChild("loai_bien").equalTo("1").limitToFirst(10);
-    
-    const data = yield call([ref, ref.once], 'value');
-    return data.val();
-}
-
-function* fetchMoreNoticeBoardSaga(page) {
+function* fetchMoreNoticeBoardSaga(params) {
     try {
-        console.log('====================================');
-        console.log('page', page);
-        console.log('====================================');
+        let data = [];
+        const { startKey, type } = params.params;
+        const ref = rootRef.orderByChild("loai_bien").equalTo(type);
+        const refdata = yield call([ref, ref.once], 'value');
+        const slicedata = slice(refdata.val(), startKey, startKey + 10);
+        for (let index = 0; index < slicedata.length; index++) {
+            const element = slicedata[index];
+            url = yield call(getImages, 'NoticeBoard', element.anh + '.jpg');
+            data[index] = { ...slicedata[index], anh: url }
+        }
+
+        yield put({
+            type: FETCH_MORE_NOTICEBOARD_SUCCEEDED,
+            result: {
+                type,
+                playload: data,
+                sumrecord: refdata.val().length
+            }
+        });
     } catch (error) {
         yield put({ type: FETCH_NOTICEBOARD_FAILED, error });
     }
-}
-
-function* _getNoticeBoardsItems(pages, type) {
-    const items = [];
-    const page = pages * 10;
-    yield rootRef.orderByChild("loai_bien").equalTo(type).limitToFirst(page).on('value', (childSnapshot) => {
-        items.push(childSnapshot.val());
-    });
-    
-    return items;
-}
-
-function* _getNoticeBoardImages(image) {
-    let url = null;
-    const imagesRef = yield rootStorageRef.child(image + '.jpg')
-    imagesRef.getDownloadURL().then(function (result) {
-        url = result;
-    });
-    return url;
 }
 
 

@@ -10,7 +10,6 @@ import RootSaga from "./sagas/RootSaga.js";
 import RootReducer from "./reducers/RootReducer";
 
 import { AppNavigator, middleware } from "./navigators/RootNavigation";
-import { backgroundColorDefault } from "./assets/styles/styles";
 
 const SagaMiddleware = createSagaMiddleware(middleware);
 const Store = createStore(RootReducer, applyMiddleware(SagaMiddleware));

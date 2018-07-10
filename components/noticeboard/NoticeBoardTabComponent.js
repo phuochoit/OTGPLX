@@ -19,18 +19,14 @@ class NoticeBoardTabComponent extends Component {
             limit: 10,
             loadMore: false,
         });
-        // this._getdata = this._getdata.bind(this);
+        this._onEndReached = this._onEndReached.bind(this);
         // this._onRefresh = this._onRefresh.bind(this);
         // this._getMore = this._getMore.bind(this);
     }
-    componentWillMount = async () => {
-
-        params = {
-            page: 1,
-            type: this.props.keys
-        }
-        this.props.fetchNoticeBoardContainer(params);
+    componentWillMount = () => {
+        this.props.fetchNoticeBoardContainer(this.props.keys);
     };
+
     componentDidMount = () => {
         // rootRef.orderByChild("loai_bien").equalTo(this.props.keys).limitToFirst(10).on('value', (childSnapshot) => {
         //     console.log('childSnapshot', childSnapshot);
@@ -66,17 +62,24 @@ class NoticeBoardTabComponent extends Component {
         // }, 3000);
     }
 
-    render() {
-        console.log(this.props.noticeBoard);
-        const { refreshing } = this.state;
-        let items = null;
-        switch (this.props.keys) {
-            case "1":
-                items = this.props.noticeBoard.items.cam
-                break;
-        
+    _onEndReached = () => {
+        if (this.props.items.length ==  this.props.sumRecored){
+
+            return;
         }
-        if (this.props.noticeBoard.currentlySending) {
+        let param = {
+            type: this.props.keys, 
+            startKey:this.props.items.length,
+        };
+        this.props.fetchMoreNoticeBoardContainer(param);
+    }
+
+    render() {
+        console.log(this.props);
+        const { refreshing } = this.state;
+        const {items, loadMore} =  this.props;
+
+        if (this.props.currentlySending) {
             return (
                 <View style={[styles.fx1, styles.jcac]}>
                     <LoadingComponent />
@@ -95,17 +98,14 @@ class NoticeBoardTabComponent extends Component {
                 keyExtractor={item => item.id}
                 onRefresh={this._onRefresh}
                 refreshing={refreshing}
+                onEndReachedThreshold={0.1}
+                onEndReached={this._onEndReached}
                 ListFooterComponent={() => {
-                    return (
-                        <Button 
-                            transparent  
-                            rounded 
-                            full
-                            onPress={this._getMore}
-                        >
-                            <Text>Xem Thêm</Text>
-                        </Button>
-                    );
+                    if(loadMore){
+                        return<LoadingComponent />;
+                    }else{
+                        return <View/>;
+                    }
                 }}
             />
         );

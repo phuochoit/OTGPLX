@@ -3,6 +3,7 @@ package com.phuochoit.onthigiaypheplaixe;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
 
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.react.ReactNativeHost;
@@ -40,8 +41,10 @@ public class MainApplication extends Application implements ReactApplication {
 
         @Override
         protected List<ReactPackage> getPackages() {
-            return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFirebasePackage(),
-                    new RNFirebaseAdMobPackage(), new RNFirebaseAuthPackage(), new RNFirebaseDatabasePackage(),new RNFirebaseStoragePackage(), new RNGoogleSigninPackage(), new FBSDKPackage(mCallbackManager));
+            return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFetchBlobPackage(),
+                    new RNFirebasePackage(), new RNFirebaseAdMobPackage(), new RNFirebaseAuthPackage(),
+                    new RNFirebaseDatabasePackage(), new RNFirebaseStoragePackage(), new RNGoogleSigninPackage(),
+                    new FBSDKPackage(mCallbackManager));
         }
 
         @Override
